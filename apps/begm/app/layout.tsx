@@ -6,7 +6,7 @@ import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import './globals.css'
 
-const TickerTape = dynamic(() => import('../components/TickerTape'), { ssr: false })
+const TickerTape = dynamic(() => import('../components/TickerTape'))
 
 const inter = Inter({ subsets: ['latin'] })
 
