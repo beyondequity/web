@@ -1,0 +1,14 @@
+node_modules
+out
+.next
+
+# Testing
+test-results
+playwright-report
+
+# Temporary/generated content
+crawled-content
+
+# Lock files - using pnpm
+package-lock.json
+.turbo
