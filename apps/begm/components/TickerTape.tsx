@@ -4,9 +4,19 @@ import { useEffect, useRef, memo } from 'react'
 
 function TickerTape() {
   const container = useRef<HTMLDivElement>(null)
+  const scriptLoaded = useRef(false)
 
   useEffect(() => {
-    if (!container.current) return
+    if (!container.current || scriptLoaded.current) return
+
+    // Mark as loaded to prevent duplicate execution in React StrictMode
+    scriptLoaded.current = true
+
+    // Check if widget already exists (in case of StrictMode double-render)
+    const existingWidget = container.current.querySelector('.tradingview-widget-container__widget')
+    if (existingWidget && existingWidget.querySelector('iframe')) {
+      return
+    }
 
     const script = document.createElement('script')
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js'

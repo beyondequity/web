@@ -4,9 +4,22 @@ import { useEffect, useRef, memo } from 'react'
 
 function AdvancedChart({ symbol = 'NASDAQ:AAPL' }: { symbol?: string }) {
   const container = useRef<HTMLDivElement>(null)
+  const scriptLoaded = useRef(false)
 
   useEffect(() => {
     if (!container.current) return
+
+    // Check if widget already exists with the same symbol (in case of StrictMode double-render)
+    const existingWidget = container.current.querySelector('.tradingview-widget-container__widget')
+    if (existingWidget && existingWidget.querySelector('iframe')) {
+      // Widget already exists, only reload if symbol changed
+      if (scriptLoaded.current) {
+        return
+      }
+    }
+
+    // Mark as loaded to prevent duplicate execution in React StrictMode
+    scriptLoaded.current = true
 
     const script = document.createElement('script')
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'

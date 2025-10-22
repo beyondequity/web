@@ -50,30 +50,35 @@ export function Footer() {
         </div>
 
         {/* Main Footer Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
           <div>
-            <h4 className="text-white font-semibold mb-4">COMPANY</h4>
+            <h4 className="text-white font-semibold mb-4">Company</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-white/70 hover:text-white text-sm transition-colors">
-                  HOME
+                  Home
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="text-white/70 hover:text-white text-sm transition-colors">
-                  ABOUT US
+                  About Us
                 </Link>
               </li>
               <li>
                 <Link href="/help" className="text-white/70 hover:text-white text-sm transition-colors">
-                  HELP
+                  Help
+                </Link>
+              </li>
+              <li>
+                <Link href="https://beyondalphaventures.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white text-sm transition-colors">
+                  Beyond Alpha Ventures
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">PRODUCTS</h4>
+            <h4 className="text-white font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/products/pro-trader" className="text-white/70 hover:text-white text-sm transition-colors">
@@ -94,48 +99,69 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">RESOURCES</h4>
+            <h4 className="text-white font-semibold mb-4">Trading</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/invest" className="text-white/70 hover:text-white text-sm transition-colors">
+                  Invest
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="text-white/70 hover:text-white text-sm transition-colors">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/web-trading" className="text-white/70 hover:text-white text-sm transition-colors">
+                  Web Trading
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/download" className="text-white/70 hover:text-white text-sm transition-colors">
-                  DOWNLOAD
+                  Download
                 </Link>
               </li>
               <li>
                 <Link href="/learn" className="text-white/70 hover:text-white text-sm transition-colors">
-                  LEARN
+                  Learn
                 </Link>
               </li>
               <li>
                 <Link href="/institutional" className="text-white/70 hover:text-white text-sm transition-colors">
-                  INSTITUTIONAL
+                  Institutional
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">ACCOUNT</h4>
+            <h4 className="text-white font-semibold mb-4">Account</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/signup" className="text-white/70 hover:text-white text-sm transition-colors">
-                  OPEN ACCOUNT
+                  Open Account
                 </Link>
               </li>
               <li>
                 <Link href="/login" className="text-white/70 hover:text-white text-sm transition-colors">
-                  LOG IN
+                  Log In
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">LEGAL</h4>
+            <h4 className="text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="/terms" className="text-white/70 hover:text-white text-sm transition-colors">
-                  TERMS & CONDITIONS
+                  Terms & Conditions
                 </Link>
               </li>
               <li>

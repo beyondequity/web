@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowRight, Mail, Lock } from 'lucide-react'
 import { useAnalytics } from '@beyondequity/analytics/providers'
@@ -10,6 +11,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const { trackEvent, trackConversion } = useAnalytics()
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -26,6 +29,10 @@ export default function LoginPage() {
     // For now, just simulate a delay
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
+    // Set authentication flag (in real app, this would be handled by a proper auth system)
+    localStorage.setItem('isAuthenticated', 'true')
+    localStorage.setItem('userEmail', email)
+
     // Track successful login
     trackConversion({
       type: 'login',
@@ -36,8 +43,9 @@ export default function LoginPage() {
 
     setLoading(false)
 
-    // TODO: Redirect to dashboard
-    console.log('Login successful:', email)
+    // Redirect to the redirect URL or dashboard
+    const redirectUrl = searchParams.get('redirect') || '/'
+    router.push(redirectUrl)
   }
 
   return (
