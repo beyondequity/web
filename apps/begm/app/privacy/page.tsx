@@ -148,14 +148,13 @@ export default function PrivacyPolicy() {
               <div className="glass-effect rounded-lg p-6">
                 <p className="text-white mb-2"><strong>Beyond Equity Global Marketplace</strong></p>
                 <p className="text-muted-1">
-                  40 Wall Street ("The Trump Building")<br />
-                  27th Floor<br />
+                  The Trump Building<br />
+                  40 Wall Street, Suite 2702<br />
                   New York, NY 10005
                 </p>
-                <p className="text-muted-1 mt-3">Email: privacy@beyondequity.com</p>
-                <p className="text-muted-1">Phone: (646)-380-1801 (Main Office)</p>
-                <p className="text-muted-1">Phone: (646)-441-0400 (Business)</p>
-                <p className="text-muted-1 mt-3">Website: www.beyondequity.com</p>
+                <p className="text-muted-1 mt-3">Email: privacy@begmprotrader.com</p>
+                <p className="text-muted-1">Phone: +1 (973) 224-7098</p>
+                <p className="text-muted-1 mt-3">Website: www.begmprotrader.com</p>
               </div>
             </section>
           </div>

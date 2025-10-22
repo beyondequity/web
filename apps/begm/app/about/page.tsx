@@ -131,14 +131,13 @@ export default function AboutPage() {
             <div className="space-y-4 text-muted-1">
               <div>
                 <p className="text-white font-semibold mb-1">BeyondEquity Global Marketplace</p>
-                <p>40 Wall Street ("The Trump Building")</p>
-                <p>27th Floor</p>
+                <p>The Trump Building</p>
+                <p>40 Wall Street, Suite 2702</p>
                 <p>New York, NY 10005</p>
               </div>
               <div>
-                <p><strong className="text-white">Main Office:</strong> (646)-380-1801</p>
-                <p><strong className="text-white">Business Line:</strong> (646)-441-0400</p>
-                <p><strong className="text-white">Email:</strong> <a href="mailto:info@beyondequity.com" className="text-success hover:underline">info@beyondequity.com</a></p>
+                <p><strong className="text-white">Phone:</strong> +1 (973) 224-7098</p>
+                <p><strong className="text-white">Email:</strong> <a href="mailto:info@begmprotrader.com" className="text-success hover:underline">info@begmprotrader.com</a></p>
               </div>
               <div className="pt-4">
                 <Link

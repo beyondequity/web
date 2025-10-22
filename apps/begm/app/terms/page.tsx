@@ -196,14 +196,13 @@ export default function TermsOfService() {
               <div className="glass-effect rounded-lg p-6">
                 <p className="text-white mb-2"><strong>BeyondEquity Securities, Inc.</strong></p>
                 <p className="text-muted-1">
-                  40 Wall Street ("The Trump Building")<br />
-                  27th Floor<br />
+                  The Trump Building<br />
+                  40 Wall Street, Suite 2702<br />
                   New York, NY 10005
                 </p>
-                <p className="text-muted-1 mt-3">Customer Support: support@beyondequity.com</p>
-                <p className="text-muted-1">Phone: (646)-380-1801 (Main Office)</p>
-                <p className="text-muted-1">Phone: (646)-441-0400 (Business)</p>
-                <p className="text-muted-1 mt-3">Website: www.beyondequity.com</p>
+                <p className="text-muted-1 mt-3">Customer Support: support@begmprotrader.com</p>
+                <p className="text-muted-1">Phone: +1 (973) 224-7098</p>
+                <p className="text-muted-1 mt-3">Website: www.begmprotrader.com</p>
                 <p className="text-muted-1 mt-3">
                   <strong className="text-white">FINRA BrokerCheck:</strong> Visit{' '}
                   <a href="https://brokercheck.finra.org" target="_blank" rel="noopener noreferrer" className="text-success hover:text-success/80">

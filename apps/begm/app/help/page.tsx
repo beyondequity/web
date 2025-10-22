@@ -26,7 +26,7 @@ export default function HelpPage() {
               <Phone className="w-10 h-10 text-success mb-4" />
               <h3 className="text-xl font-bold mb-2">Call Us</h3>
               <p className="text-muted-1 mb-4">Speak with our support team</p>
-              <p className="text-white font-semibold">(646)-380-1801</p>
+              <p className="text-white font-semibold">+1 (973) 224-7098</p>
               <p className="text-muted-1 text-sm mt-2">Mon-Fri: 8am-8pm ET</p>
             </div>
 
@@ -34,8 +34,8 @@ export default function HelpPage() {
               <Mail className="w-10 h-10 text-success mb-4" />
               <h3 className="text-xl font-bold mb-2">Email Support</h3>
               <p className="text-muted-1 mb-4">Get help via email</p>
-              <a href="mailto:support@beyondequity.com" className="text-success hover:underline">
-                support@beyondequity.com
+              <a href="mailto:support@begmprotrader.com" className="text-success hover:underline">
+                support@begmprotrader.com
               </a>
               <p className="text-muted-1 text-sm mt-2">Response within 24 hours</p>
             </div>
@@ -199,14 +199,13 @@ export default function HelpPage() {
             <div className="space-y-4 text-muted-1">
               <div>
                 <p className="text-white font-semibold mb-1">BeyondEquity Global Marketplace</p>
-                <p>40 Wall Street ("The Trump Building")</p>
-                <p>27th Floor</p>
+                <p>The Trump Building</p>
+                <p>40 Wall Street, Suite 2702</p>
                 <p>New York, NY 10005</p>
               </div>
               <div>
-                <p><strong className="text-white">Main Office:</strong> (646)-380-1801</p>
-                <p><strong className="text-white">Business Line:</strong> (646)-441-0400</p>
-                <p><strong className="text-white">Email:</strong> <a href="mailto:support@beyondequity.com" className="text-success hover:underline">support@beyondequity.com</a></p>
+                <p><strong className="text-white">Phone:</strong> +1 (973) 224-7098</p>
+                <p><strong className="text-white">Email:</strong> <a href="mailto:support@begmprotrader.com" className="text-success hover:underline">support@begmprotrader.com</a></p>
               </div>
               <div>
                 <p className="text-sm">

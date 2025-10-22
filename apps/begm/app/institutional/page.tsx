@@ -130,8 +130,8 @@ export default function InstitutionalPage() {
             <div className="space-y-4">
               <div>
                 <p className="text-white font-semibold">Institutional Sales</p>
-                <p className="text-muted-1">Phone: (646)-441-0400</p>
-                <p className="text-muted-1">Email: <a href="mailto:institutional@beyondequity.com" className="text-success hover:underline">institutional@beyondequity.com</a></p>
+                <p className="text-muted-1">Phone: +1 (973) 224-7098</p>
+                <p className="text-muted-1">Email: <a href="mailto:institutional@begmprotrader.com" className="text-success hover:underline">institutional@begmprotrader.com</a></p>
               </div>
               <button className="px-8 py-3 bg-success hover:bg-success/90 text-white font-semibold rounded-lg transition-colors">
                 Request a Demo
