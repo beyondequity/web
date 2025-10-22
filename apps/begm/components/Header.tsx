@@ -6,7 +6,6 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-primary/80 backdrop-blur-xl">
@@ -22,17 +21,14 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             {/* Products Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setProductsDropdownOpen(true)}
-              onMouseLeave={() => setProductsDropdownOpen(false)}
+            <div
+              className="relative group"
             >
               <button className="text-sm font-medium text-white/90 hover:text-white transition-colors flex items-center gap-1">
                 PRODUCTS
-                <ChevronDown size={16} className={`transition-transform ${productsDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown size={16} className={`transition-transform group-hover:rotate-180`} />
               </button>
-              {productsDropdownOpen && (
-                <div className="absolute left-0 top-full mt-2 w-64 bg-primary/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-xl overflow-hidden">
+              <div className="absolute left-0 top-full mt-2 w-64 bg-primary/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <Link 
                     href="/products/pro-trader" 
                     className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5"
@@ -55,7 +51,6 @@ export function Header() {
                     <div className="text-xs text-white/60 mt-1">Bloomberg Terminal for Private Markets</div>
                   </Link>
                 </div>
-              )}
             </div>
             <Link href="/invest" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
               INVEST

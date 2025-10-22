@@ -45,12 +45,12 @@ export default function Home() {
                 Get Started
                 <ArrowRight size={20} />
               </Link>
-              <a
-                href="#demo"
+              <Link
+                href="/trade"
                 className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-lg font-semibold hover:bg-white/10 transition-all"
               >
                 Try Demo
-              </a>
+              </Link>
             </div>
             <div className="flex items-center gap-6 mt-8 text-sm text-muted-1 justify-center flex-wrap">
               <div className="flex items-center gap-2">
@@ -71,7 +71,7 @@ export default function Home() {
       </section>
 
       {/* Full View Demo Section - SECOND */}
-      <section id="demo" className="relative bg-secondary min-h-screen flex flex-col">
+      <section className="relative bg-secondary min-h-screen flex flex-col">
         {/* Demo Header */}
         <div className="container mx-auto px-4 pt-12 pb-6">
           <div className="max-w-7xl mx-auto text-center">
@@ -291,12 +291,12 @@ export default function Home() {
                 Get Started
                 <ArrowRight size={20} />
               </Link>
-              <a
-                href="#demo"
+              <Link
+                href="/trade"
                 className="px-10 py-4 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-lg hover:bg-white/10 transition-all"
               >
                 Try Demo First
-              </a>
+              </Link>
             </div>
             <div className="flex items-center justify-center gap-8 text-sm text-muted-1 flex-wrap">
               <div className="flex items-center gap-2">
