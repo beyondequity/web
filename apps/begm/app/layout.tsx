@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import dynamic from 'next/dynamic'
 import { AnalyticsProvider, GoogleAnalytics, FacebookPixel, TwitterPixel } from '@beyondequity/analytics/providers'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import './globals.css'
+
+const TickerTape = dynamic(() => import('../components/TickerTape'), { ssr: false })
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -43,6 +46,10 @@ export default function RootLayout({
           }}
         >
           <Header />
+          {/* Sticky Ticker Tape Below Header - On All Pages */}
+          <div className="sticky top-16 z-40 bg-primary/95 backdrop-blur-xl border-b border-white/10 shadow-lg">
+            <TickerTape />
+          </div>
           <main className="min-h-screen">
             {children}
           </main>

@@ -5,19 +5,13 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useAnalytics } from '@beyondequity/analytics/providers'
 
-const TickerTape = dynamic(() => import('../components/TickerTape'), { ssr: false })
 const AdvancedChart = dynamic(() => import('../components/AdvancedChart'), { ssr: false })
 
 export default function Home() {
   const { trackEvent } = useAnalytics()
-  
+
   return (
     <div className="min-h-screen">
-      {/* Sticky Ticker Tape - ONLY ONE */}
-      <div className="sticky top-16 z-40 bg-primary/95 backdrop-blur-xl border-b border-white/10 shadow-lg">
-        <TickerTape />
-      </div>
-
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-success/5 via-transparent to-info/5"></div>
