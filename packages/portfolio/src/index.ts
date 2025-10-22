@@ -1,6 +1,6 @@
 /**
  * @beyondequity/portfolio
- * Shared portfolio data and utilities for the Beyond Alpha ecosystem
+ * Shared portfolio data and utilities for the Beyond Equity ecosystem
  */
 
 // Export all data and utilities

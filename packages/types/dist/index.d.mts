@@ -1,6 +1,6 @@
 /**
  * Portfolio Types
- * Shared types for investment portfolio data across the Beyond Alpha ecosystem
+ * Shared types for investment portfolio data across the Beyond Equity ecosystem
  */
 interface PortfolioCompany {
     id: string;

@@ -16,8 +16,8 @@ const Logo: React.FC<LogoProps> = ({
   size = 'md',
   variant = 'default',
   className = '',
-  brandColor = '#D4AF37',
-  companyName = 'Beyond Alpha'
+  brandColor = '#10B981',
+  companyName = 'Beyond Equity'
 }) => {
   const sizes = {
     sm: 'text-xl',
@@ -28,14 +28,14 @@ const Logo: React.FC<LogoProps> = ({
   const logoContent = (
     <div className={cn('flex items-center gap-2', className)}>
       {variant !== 'text-only' && (
-        <div 
+        <div
           className="w-8 h-8 rounded-md flex items-center justify-center font-bold"
-          style={{ 
+          style={{
             backgroundColor: brandColor,
             color: '#0A0A0A'
           }}
         >
-          BA
+          BE
         </div>
       )}
       {variant !== 'icon-only' && (

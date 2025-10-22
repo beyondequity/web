@@ -1,23 +1,23 @@
 # @beyondequity/ui
 
-Shared UI components for the Beyond Alpha ecosystem, built on top of @hanzo/ui.
+Shared UI components for the Beyond Equity ecosystem, built on top of @hanzo/ui.
 
 ## Overview
 
-This package provides brand-specific UI components and wrappers around the powerful @hanzo/ui component library. It ensures consistency across all Beyond Alpha applications while allowing for brand customization.
+This package provides brand-specific UI components and wrappers around the powerful @hanzo/ui component library. It ensures consistency across all Beyond Equity applications while allowing for brand customization.
 
 ## Features
 
 - **Built on @hanzo/ui**: Leverages the comprehensive Hanzo UI library (based on shadcn/ui with Radix UI primitives)
-- **Brand-specific components**: Custom Header, Footer, and Logo components for Beyond Alpha branding
-- **Multi-brand support**: Site definitions for BAV (Beyond Alpha Ventures) and BEGM (Beyond Equity Global Marketplace)
+- **Brand-specific components**: Custom Header, Footer, and Logo components for Beyond Equity branding
+- **Multi-brand support**: Site definitions for BAV (Beyond Equity Ventures) and BEGM (Beyond Equity Global Marketplace)
 - **Responsive design**: Mobile and desktop optimized components
 - **Theme support**: Dark/light mode with next-themes integration
 - **Type-safe**: Full TypeScript support with exported types
 
 ## Installation
 
-This package is part of the Beyond Alpha monorepo and is automatically available to all apps.
+This package is part of the Beyond Equity monorepo and is automatically available to all apps.
 
 ```typescript
 import { Header, Footer, Logo } from '@beyondequity/ui'
@@ -31,7 +31,7 @@ import { bavSiteDef, begmSiteDef } from '@beyondequity/ui/site-def'
 Each app should use its appropriate site definition:
 
 ```typescript
-// apps/bav (Beyond Alpha Ventures)
+// apps/bav (Beyond Equity Ventures)
 import { bavSiteDef } from '@beyondequity/ui/site-def'
 
 // apps/begm (Beyond Equity Global Marketplace)
@@ -101,7 +101,7 @@ import {
 
 ## Available Components
 
-### Beyond Alpha Components
+### Beyond Equity Components
 - `Header` - Responsive header with navigation (desktop + mobile)
 - `Footer` - Footer with navigation links and copyright
 - `Logo` - Brand logo component with customization options

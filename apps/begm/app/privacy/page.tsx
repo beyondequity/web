@@ -155,7 +155,7 @@ export default function PrivacyPolicy() {
                 <p className="text-muted-1 mt-3">Email: privacy@beyondequity.com</p>
                 <p className="text-muted-1">Phone: (646)-380-1801 (Main Office)</p>
                 <p className="text-muted-1">Phone: (646)-441-0400 (Business)</p>
-                <p className="text-muted-1 mt-3">Website: www.beyondalphaventures.com</p>
+                <p className="text-muted-1 mt-3">Website: www.beyondequity.com</p>
               </div>
             </section>
           </div>

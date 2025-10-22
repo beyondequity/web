@@ -1,6 +1,6 @@
 /**
  * @beyondequity/ui
- * Shared UI components for the Beyond Alpha ecosystem
+ * Shared UI components for the Beyond Equity ecosystem
  * Built on top of @hanzo/ui for maximum reusability and consistency
  */
 export { default as Header } from './header';

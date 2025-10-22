@@ -1,10 +1,10 @@
 # @beyondequity/portfolio
 
-Shared portfolio data and utilities for the Beyond Alpha ecosystem.
+Shared portfolio data and utilities for the Beyond Equity ecosystem.
 
 ## Overview
 
-This package contains the centralized portfolio data for Beyond Alpha Ventures' investment portfolio. It provides:
+This package contains the centralized portfolio data for Beyond Equity Ventures' investment portfolio. It provides:
 - Portfolio company data
 - Helper functions for filtering and querying companies
 - Portfolio summary statistics
@@ -13,7 +13,7 @@ All apps in the monorepo can import this package to access the same portfolio da
 
 ## Installation
 
-This package is part of the Beyond Alpha monorepo and is automatically available to all apps.
+This package is part of the Beyond Equity monorepo and is automatically available to all apps.
 
 ```typescript
 import { 

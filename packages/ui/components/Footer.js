@@ -5,7 +5,7 @@ import Logo from './Logo';
 import { legal } from '../site-def';
 const Copyright = ({ className }) => {
     const year = new Date().getFullYear();
-    return (_jsxs("div", { className: className, children: ["\u00A9 ", year, " Beyond Alpha. All rights reserved."] }));
+    return (_jsxs("div", { className: className, children: ["\u00A9 ", year, " Beyond Equity. All rights reserved."] }));
 };
 const Footer = ({ siteDef, className = '', noHorizPadding = false }) => {
     const { footer, aboveCopyright, companyName, brandColor } = siteDef;

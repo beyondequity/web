@@ -1,6 +1,6 @@
 /**
  * @beyondequity/analytics
- * Unified analytics tracking for Beyond Alpha ecosystem
+ * Unified analytics tracking for Beyond Equity ecosystem
  */
 
 import ReactGA from 'react-ga4'

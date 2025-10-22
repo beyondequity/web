@@ -1,6 +1,6 @@
 # @beyondequity/analytics
 
-Unified analytics tracking for the Beyond Alpha ecosystem with support for Google Analytics, Facebook Pixel, and Twitter/X Pixel.
+Unified analytics tracking for the Beyond Equity ecosystem with support for Google Analytics, Facebook Pixel, and Twitter/X Pixel.
 
 ## Features
 
@@ -14,7 +14,7 @@ Unified analytics tracking for the Beyond Alpha ecosystem with support for Googl
 
 ## Installation
 
-This package is part of the Beyond Alpha monorepo and is automatically available to all apps.
+This package is part of the Beyond Equity monorepo and is automatically available to all apps.
 
 ```typescript
 import { AnalyticsProvider, useAnalytics } from '@beyondequity/analytics/providers'

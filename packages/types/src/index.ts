@@ -1,6 +1,6 @@
 /**
  * @beyondequity/types
- * Shared TypeScript types for the Beyond Alpha ecosystem
+ * Shared TypeScript types for the Beyond Equity ecosystem
  */
 
 // Portfolio types
