@@ -256,29 +256,6 @@ export default function TradePage() {
 
       {/* Trading Interface */}
       <div className="flex" style={{ height: 'calc(100vh - 8.5rem)' }}>
-        {/* Left Sidebar - Quick Symbols */}
-        <div className="w-48 bg-primary/50 border-r border-white/10 overflow-y-auto">
-          <div className="p-3">
-            <h3 className="text-xs font-semibold text-white/60 uppercase mb-3">Quick Access</h3>
-            <div className="space-y-1">
-              {popularSymbols.map((item) => (
-                <button
-                  key={item.symbol}
-                  onClick={() => handleSymbolChange(item.symbol)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                    currentSymbol === item.symbol
-                      ? 'bg-accent/20 text-accent border border-accent/30'
-                      : 'text-white/80 hover:bg-white/5'
-                  }`}
-                >
-                  <div className="font-medium">{item.name}</div>
-                  <div className="text-xs text-white/50">{item.symbol.split(':')[1] || item.symbol}</div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Center - Chart */}
         <div className="flex-1 relative">
           <div id="tradingview_chart" className="absolute inset-0" />
