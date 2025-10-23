@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import { Search, TrendingUp, TrendingDown } from 'lucide-react'
+import { Search, TrendingUp, TrendingDown, ChevronDown } from 'lucide-react'
 
 declare global {
   interface Window {
@@ -21,11 +21,70 @@ const popularSymbols = [
   { symbol: 'GOLD', name: 'Gold' },
 ]
 
+const top100Symbols = [
+  { symbol: 'NASDAQ:AAPL', name: 'Apple Inc.' },
+  { symbol: 'NASDAQ:MSFT', name: 'Microsoft Corporation' },
+  { symbol: 'NASDAQ:GOOGL', name: 'Alphabet Inc.' },
+  { symbol: 'NASDAQ:AMZN', name: 'Amazon.com Inc.' },
+  { symbol: 'NASDAQ:NVDA', name: 'NVIDIA Corporation' },
+  { symbol: 'NASDAQ:TSLA', name: 'Tesla Inc.' },
+  { symbol: 'NASDAQ:META', name: 'Meta Platforms Inc.' },
+  { symbol: 'NYSE:BRK.B', name: 'Berkshire Hathaway' },
+  { symbol: 'NYSE:V', name: 'Visa Inc.' },
+  { symbol: 'NYSE:UNH', name: 'UnitedHealth Group' },
+  { symbol: 'NYSE:JNJ', name: 'Johnson & Johnson' },
+  { symbol: 'NYSE:WMT', name: 'Walmart Inc.' },
+  { symbol: 'NYSE:JPM', name: 'JPMorgan Chase' },
+  { symbol: 'NASDAQ:XOM', name: 'Exxon Mobil' },
+  { symbol: 'NYSE:LLY', name: 'Eli Lilly' },
+  { symbol: 'NASDAQ:AVGO', name: 'Broadcom Inc.' },
+  { symbol: 'NYSE:PG', name: 'Procter & Gamble' },
+  { symbol: 'NASDAQ:ORCL', name: 'Oracle Corporation' },
+  { symbol: 'NYSE:MA', name: 'Mastercard' },
+  { symbol: 'NYSE:HD', name: 'Home Depot' },
+  { symbol: 'NYSE:CVX', name: 'Chevron Corporation' },
+  { symbol: 'NASDAQ:COST', name: 'Costco Wholesale' },
+  { symbol: 'NYSE:ABBV', name: 'AbbVie Inc.' },
+  { symbol: 'NASDAQ:NFLX', name: 'Netflix Inc.' },
+  { symbol: 'NYSE:MRK', name: 'Merck & Co.' },
+  { symbol: 'NASDAQ:ASML', name: 'ASML Holding' },
+  { symbol: 'NYSE:KO', name: 'Coca-Cola Company' },
+  { symbol: 'NASDAQ:PEP', name: 'PepsiCo Inc.' },
+  { symbol: 'NASDAQ:ADBE', name: 'Adobe Inc.' },
+  { symbol: 'NYSE:TMO', name: 'Thermo Fisher' },
+  { symbol: 'NASDAQ:CSCO', name: 'Cisco Systems' },
+  { symbol: 'NYSE:BAC', name: 'Bank of America' },
+  { symbol: 'NASDAQ:INTC', name: 'Intel Corporation' },
+  { symbol: 'NASDAQ:CMCSA', name: 'Comcast Corporation' },
+  { symbol: 'NYSE:DIS', name: 'Walt Disney' },
+  { symbol: 'NASDAQ:AMD', name: 'AMD' },
+  { symbol: 'NYSE:NKE', name: 'Nike Inc.' },
+  { symbol: 'NASDAQ:QCOM', name: 'Qualcomm Inc.' },
+  { symbol: 'BINANCE:BTCUSDT', name: 'Bitcoin' },
+  { symbol: 'BINANCE:ETHUSDT', name: 'Ethereum' },
+  { symbol: 'BINANCE:BNBUSDT', name: 'Binance Coin' },
+  { symbol: 'BINANCE:SOLUSDT', name: 'Solana' },
+  { symbol: 'BINANCE:XRPUSDT', name: 'Ripple' },
+  { symbol: 'BINANCE:ADAUSDT', name: 'Cardano' },
+  { symbol: 'BINANCE:DOGEUSDT', name: 'Dogecoin' },
+  { symbol: 'FX:EURUSD', name: 'EUR/USD' },
+  { symbol: 'FX:GBPUSD', name: 'GBP/USD' },
+  { symbol: 'FX:USDJPY', name: 'USD/JPY' },
+  { symbol: 'FX:AUDUSD', name: 'AUD/USD' },
+  { symbol: 'FX:USDCAD', name: 'USD/CAD' },
+  { symbol: 'GOLD', name: 'Gold' },
+  { symbol: 'SILVER', name: 'Silver' },
+  { symbol: 'CRUDE_OIL', name: 'Crude Oil' },
+]
+
 export default function DemoPage() {
   const [currentSymbol, setCurrentSymbol] = useState('NASDAQ:AAPL')
   const [searchTerm, setSearchTerm] = useState('')
   const [widget, setWidget] = useState<any>(null)
   const [balance, setBalance] = useState(100000)
+  const [showSymbolDropdown, setShowSymbolDropdown] = useState(false)
+  const [symbolFilter, setSymbolFilter] = useState('')
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const script = document.createElement('script')
@@ -91,12 +150,31 @@ export default function DemoPage() {
     }
   }, [])
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowSymbolDropdown(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
   const handleSymbolChange = (symbol: string) => {
     setCurrentSymbol(symbol)
+    setShowSymbolDropdown(false)
+    setSymbolFilter('')
     if (widget && widget.setSymbol) {
       widget.setSymbol(symbol, 'D')
     }
   }
+
+  const filteredSymbols = top100Symbols.filter(item =>
+    symbolFilter === '' ||
+    item.name.toLowerCase().includes(symbolFilter.toLowerCase()) ||
+    item.symbol.toLowerCase().includes(symbolFilter.toLowerCase())
+  )
 
   return (
     <div className="bg-primary">
@@ -123,31 +201,56 @@ export default function DemoPage() {
             </div>
           </div>
 
-          {/* Current Symbol & Status */}
-          <div className="flex items-center gap-3">
-            <div className="text-sm">
+          {/* Current Symbol & Status - Clickable Dropdown */}
+          <div className="flex items-center gap-3 relative" ref={dropdownRef}>
+            <button
+              onClick={() => setShowSymbolDropdown(!showSymbolDropdown)}
+              className="flex items-center gap-2 text-sm hover:bg-white/5 px-3 py-2 rounded-lg transition-colors"
+            >
               <span className="text-white/60">Trading:</span>
-              <span className="text-white font-semibold ml-2">{currentSymbol}</span>
-            </div>
+              <span className="text-white font-semibold">{currentSymbol}</span>
+              <ChevronDown size={16} className={`text-white/60 transition-transform ${showSymbolDropdown ? 'rotate-180' : ''}`} />
+            </button>
             <span className="text-xs px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full border border-blue-500/30">
               Demo
             </span>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2">
-            <Link
-              href="/signup"
-              className="px-3 py-1.5 bg-accent hover:bg-accent/90 text-white text-xs font-semibold rounded-lg transition-colors"
-            >
-              Go Live
-            </Link>
-            <Link
-              href="/trade"
-              className="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-medium rounded-lg transition-colors"
-            >
-              Live Trading
-            </Link>
+            {/* Symbol Dropdown */}
+            {showSymbolDropdown && (
+              <div className="absolute top-full left-0 mt-2 w-96 bg-primary/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl overflow-hidden z-50">
+                {/* Search within dropdown */}
+                <div className="p-3 border-b border-white/10">
+                  <input
+                    type="text"
+                    placeholder="Search symbols..."
+                    value={symbolFilter}
+                    onChange={(e) => setSymbolFilter(e.target.value)}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-accent/50"
+                    autoFocus
+                  />
+                </div>
+                {/* Symbols List */}
+                <div className="max-h-96 overflow-y-auto">
+                  {filteredSymbols.map((item) => (
+                    <button
+                      key={item.symbol}
+                      onClick={() => handleSymbolChange(item.symbol)}
+                      className={`w-full text-left px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/5 ${
+                        currentSymbol === item.symbol ? 'bg-accent/20 text-accent' : 'text-white/80'
+                      }`}
+                    >
+                      <div className="font-semibold text-sm">{item.name}</div>
+                      <div className="text-xs text-white/50">{item.symbol}</div>
+                    </button>
+                  ))}
+                  {filteredSymbols.length === 0 && (
+                    <div className="px-4 py-8 text-center text-white/50 text-sm">
+                      No symbols found
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
