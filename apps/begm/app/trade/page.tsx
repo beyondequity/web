@@ -87,9 +87,9 @@ export default function TradePage() {
   }, [])
 
   return (
-    <div className="bg-primary">
+    <div className="bg-primary absolute inset-0 top-[7rem]">
       {/* Trading Interface */}
-      <div className="flex" style={{ height: 'calc(100vh - 7rem)' }}>
+      <div className="flex h-full">
         {/* Center - Chart */}
         <div className="flex-1 relative">
           <div id="tradingview_chart" className="absolute inset-0" />
