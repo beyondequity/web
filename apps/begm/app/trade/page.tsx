@@ -1,187 +1,181 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { TrendingUp, TrendingDown } from 'lucide-react'
+import { useEffect } from 'react'
 
 declare global {
   interface Window {
     TradingView: any
+    Datafeeds: any
+    Brokers: any
+    tvWidget: any
+    tradingHost: any
   }
 }
 
 export default function TradePage() {
-  const [currentSymbol, setCurrentSymbol] = useState('NASDAQ:AAPL')
-  const [widget, setWidget] = useState<any>(null)
-
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://s3.tradingview.com/tv.js'
-    script.async = true
-    script.onload = () => {
-      if (typeof window.TradingView !== 'undefined') {
-        const newWidget = new window.TradingView.widget({
-          autosize: true,
-          symbol: currentSymbol,
-          interval: 'D',
-          timezone: 'America/New_York',
-          theme: 'dark',
-          style: '1',
-          locale: 'en',
-          toolbar_bg: '#0a0a0a',
-          enable_publishing: false,
-          allow_symbol_change: true,
-          container_id: 'tradingview_chart',
-          details: true,
-          hotlist: true,
-          calendar: true,
-          studies: [
-            'Volume@tv-basicstudies',
-            'MASimple@tv-basicstudies',
-            'RSI@tv-basicstudies',
-            'MACD@tv-basicstudies'
-          ],
-          disabled_features: [],
-          enabled_features: [
-            'study_templates',
-            'use_localstorage_for_settings',
-            'save_chart_properties_to_local_storage',
-            'header_symbol_search',
-            'header_compare',
-            'header_undo_redo',
-            'header_screenshot',
-            'header_fullscreen_button',
-            'left_toolbar',
-            'control_bar',
-            'timeframes_toolbar',
-            'display_market_status',
-            'show_interval_dialog_on_key_press'
-          ],
-          overrides: {
-            'mainSeriesProperties.candleStyle.upColor': '#22c55e',
-            'mainSeriesProperties.candleStyle.downColor': '#ef4444',
-            'mainSeriesProperties.candleStyle.borderUpColor': '#22c55e',
-            'mainSeriesProperties.candleStyle.borderDownColor': '#ef4444',
-            'mainSeriesProperties.candleStyle.wickUpColor': '#22c55e',
-            'mainSeriesProperties.candleStyle.wickDownColor': '#ef4444',
-          },
-        })
+    // Load Charting Library
+    const libraryScript = document.createElement('script')
+    libraryScript.src = 'https://trading-terminal.tradingview-widget.com/charting_library/charting_library.standalone.js'
+    libraryScript.async = false
 
-        // Subscribe to symbol changes
-        newWidget.onChartReady(() => {
-          newWidget.activeChart().onSymbolChanged().subscribe(null, (symbolData: any) => {
-            setCurrentSymbol(symbolData.name)
+    // Load UDF Datafeed
+    const datafeedScript = document.createElement('script')
+    datafeedScript.src = 'https://trading-terminal.tradingview-widget.com/datafeeds/udf/dist/bundle.js'
+    datafeedScript.async = false
+
+    // Load Broker Sample
+    const brokerScript = document.createElement('script')
+    brokerScript.src = 'https://trading-terminal.tradingview-widget.com/broker-sample/dist/bundle.js'
+    brokerScript.async = false
+
+    const initializeWidget = () => {
+      if (typeof window.TradingView === 'undefined' ||
+          typeof window.Datafeeds === 'undefined' ||
+          typeof window.Brokers === 'undefined') {
+        return
+      }
+
+      // Custom Datafeed
+      class CustomDatafeed extends window.Datafeeds.UDFCompatibleDatafeed {}
+
+      const datafeed = new CustomDatafeed(
+        'https://demo-feed-data.tradingview.com',
+        undefined,
+        {
+          maxResponseLength: 1000,
+          expectedOrder: 'latestFirst'
+        }
+      )
+
+      // Custom Broker with demo positions
+      class CustomBroker extends window.Brokers.BrokerDemo {
+        constructor(host: any, quotesProvider: any) {
+          super(host, quotesProvider)
+          this.customPnL = this._host.factory.createWatchedValue(100000)
+
+          // Simulate P&L updates
+          setInterval(() => {
+            const randomDelta = Math.random() * 10
+            this.myCustomUpdate(randomDelta)
+          }, 1000)
+        }
+
+        accountManagerInfo() {
+          const result = super.accountManagerInfo()
+
+          result.customFormatters = [
+            {
+              name: 'custom-type',
+              formatText: (dataFields: any) => {
+                return dataFields.values[0]
+              }
+            }
+          ]
+
+          const summaryProps = [
+            {
+              text: 'Account Balance',
+              wValue: this.customPnL,
+              formatter: 'fixed'
+            }
+          ]
+          result.summary = summaryProps
+
+          return result
+        }
+
+        positions() {
+          return new Promise((resolve) => {
+            resolve([])
           })
-        })
+        }
 
-        setWidget(newWidget)
+        myCustomUpdate(delta: number) {
+          this.customPnL.setValue(100000 + delta * 10)
+        }
+      }
+
+      // Initialize widget
+      const widget = new window.TradingView.widget({
+        library_path: 'https://trading-terminal.tradingview-widget.com/charting_library/',
+        fullscreen: true,
+        symbol: 'NASDAQ:AAPL',
+        interval: '1D',
+        container: 'tv_chart_container',
+        datafeed: datafeed,
+        locale: 'en',
+        theme: 'dark',
+        toolbar_bg: '#0a0a0a',
+        overrides: {
+          'mainSeriesProperties.candleStyle.upColor': '#22c55e',
+          'mainSeriesProperties.candleStyle.downColor': '#ef4444',
+          'mainSeriesProperties.candleStyle.borderUpColor': '#22c55e',
+          'mainSeriesProperties.candleStyle.borderDownColor': '#ef4444',
+          'mainSeriesProperties.candleStyle.wickUpColor': '#22c55e',
+          'mainSeriesProperties.candleStyle.wickDownColor': '#ef4444',
+        },
+        disabled_features: [],
+        enabled_features: [
+          'study_templates',
+          'use_localstorage_for_settings',
+          'save_chart_properties_to_local_storage',
+        ],
+        broker_factory: function (host: any) {
+          window.tradingHost = host
+          return new CustomBroker(host, datafeed)
+        },
+        broker_config: {
+          configFlags: {
+            supportClosePosition: true,
+            supportPLUpdate: true,
+            supportEditAmount: true,
+            supportModifyOrderPrice: true,
+            supportModifyBrackets: true,
+            supportOrderBrackets: true,
+            supportPositionBrackets: true,
+            calculatePLUsingLast: true,
+            supportOrdersHistory: true
+          }
+        }
+      })
+
+      window.tvWidget = widget
+    }
+
+    // Load scripts in sequence
+    libraryScript.onload = () => {
+      document.head.appendChild(datafeedScript)
+      datafeedScript.onload = () => {
+        document.head.appendChild(brokerScript)
+        brokerScript.onload = () => {
+          initializeWidget()
+        }
       }
     }
-    document.head.appendChild(script)
+
+    document.head.appendChild(libraryScript)
 
     return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script)
+      if (window.tvWidget !== null && typeof window.tvWidget.remove === 'function') {
+        window.tvWidget.remove()
+        window.tvWidget = null
+      }
+      if (document.head.contains(libraryScript)) {
+        document.head.removeChild(libraryScript)
+      }
+      if (document.head.contains(datafeedScript)) {
+        document.head.removeChild(datafeedScript)
+      }
+      if (document.head.contains(brokerScript)) {
+        document.head.removeChild(brokerScript)
       }
     }
   }, [])
 
   return (
     <div className="bg-primary absolute inset-0 top-[7rem]">
-      {/* Trading Interface */}
-      <div className="flex h-full">
-        {/* Center - Chart */}
-        <div className="flex-1 relative">
-          <div id="tradingview_chart" className="absolute inset-0" />
-        </div>
-
-        {/* Right Sidebar - Trade Panel */}
-        <div className="w-80 bg-primary/50 border-l border-white/10 overflow-y-auto">
-          <div className="p-4">
-            {/* Current Symbol Display */}
-            <div className="mb-4 p-3 bg-white/5 border border-white/10 rounded-lg">
-              <div className="text-xs text-white/60 mb-1">Trading</div>
-              <div className="text-lg font-bold text-white">{currentSymbol}</div>
-            </div>
-
-            {/* Buy/Sell Tabs */}
-            <div className="grid grid-cols-2 gap-2 mb-4">
-              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
-                <TrendingUp size={16} />
-                Buy
-              </button>
-              <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
-                <TrendingDown size={16} />
-                Sell
-              </button>
-            </div>
-
-            {/* Order Form */}
-            <div className="space-y-4">
-              <div>
-                <label className="block text-xs text-white/60 mb-1">Order Type</label>
-                <select className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-accent/50">
-                  <option>Market</option>
-                  <option>Limit</option>
-                  <option>Stop</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs text-white/60 mb-1">Amount</label>
-                <input
-                  type="number"
-                  placeholder="0.00"
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-accent/50"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs text-white/60 mb-1">Price (USD)</label>
-                <input
-                  type="number"
-                  placeholder="Market Price"
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-accent/50"
-                />
-              </div>
-
-              <button className="w-full px-4 py-3 bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg transition-colors">
-                Place Order
-              </button>
-
-              <div className="pt-4 border-t border-white/10 text-xs text-white/50 text-center">
-                <Link href="/signup" className="text-accent hover:text-accent/80 underline">
-                  Create account
-                </Link>
-                {' '}to start trading
-              </div>
-            </div>
-
-            {/* Market Stats */}
-            <div className="mt-6 pt-6 border-t border-white/10">
-              <h3 className="text-xs font-semibold text-white/60 uppercase mb-3">Market Stats</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-white/60">24h Volume</span>
-                  <span className="text-white">$42.5M</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/60">24h High</span>
-                  <span className="text-green-400">$262.85</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/60">24h Low</span>
-                  <span className="text-red-400">$255.43</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/60">Market Cap</span>
-                  <span className="text-white">$3.81T</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="tv_chart_container" className="w-full h-full" />
     </div>
   )
 }
