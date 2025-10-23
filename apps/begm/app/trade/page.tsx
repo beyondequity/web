@@ -44,9 +44,31 @@ export default function TradePage() {
           enable_publishing: false,
           allow_symbol_change: true,
           container_id: 'tradingview_chart',
-          studies: ['STD;SMA'],
+          details: true,
+          hotlist: true,
+          calendar: true,
+          studies: [
+            'Volume@tv-basicstudies',
+            'MASimple@tv-basicstudies',
+            'RSI@tv-basicstudies',
+            'MACD@tv-basicstudies'
+          ],
           disabled_features: [],
-          enabled_features: ['study_templates'],
+          enabled_features: [
+            'study_templates',
+            'use_localstorage_for_settings',
+            'save_chart_properties_to_local_storage',
+            'header_symbol_search',
+            'header_compare',
+            'header_undo_redo',
+            'header_screenshot',
+            'header_fullscreen_button',
+            'left_toolbar',
+            'control_bar',
+            'timeframes_toolbar',
+            'display_market_status',
+            'show_interval_dialog_on_key_press'
+          ],
           overrides: {
             'mainSeriesProperties.candleStyle.upColor': '#22c55e',
             'mainSeriesProperties.candleStyle.downColor': '#ef4444',
