@@ -100,6 +100,9 @@ export function Header() {
                 </div>
               </div>
             </div>
+            <Link href="/news" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
+              NEWS
+            </Link>
             <Link href="/invest" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
               INVEST
             </Link>
@@ -217,6 +220,12 @@ export function Header() {
               </Link>
             </div>
 
+            <Link
+              href="/news"
+              className="block rounded-lg px-3 py-2 text-base font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+            >
+              NEWS
+            </Link>
             <Link
               href="/invest"
               className="block rounded-lg px-3 py-2 text-base font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
