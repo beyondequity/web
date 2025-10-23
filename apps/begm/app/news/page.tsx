@@ -15,11 +15,9 @@ export default function NewsPage() {
     script.innerHTML = JSON.stringify({
       feedMode: 'all_symbols',
       isTransparent: false,
-      displayMode: 'adaptive',
+      displayMode: 'regular',
       colorTheme: 'dark',
       locale: 'en',
-      width: '100%',
-      height: '100%',
     })
 
     containerRef.current.appendChild(script)
@@ -32,28 +30,24 @@ export default function NewsPage() {
   }, [])
 
   return (
-    <div className="bg-primary">
+    <div className="bg-primary" style={{ height: 'calc(100vh - 7rem)' }}>
       {/* Page Header */}
-      <div className="border-b border-white/10 px-4 py-6">
+      <div className="border-b border-white/10 px-4 py-4">
         <div className="container mx-auto">
-          <h1 className="text-3xl font-bold text-white mb-2">Market News</h1>
-          <p className="text-white/70">
-            Stay updated with the latest market news, analysis, and insights from top financial sources
+          <h1 className="text-2xl font-bold text-white mb-1">Market News</h1>
+          <p className="text-sm text-white/70">
+            Stay updated with the latest market news, analysis, and insights
           </p>
         </div>
       </div>
 
       {/* TradingView Timeline Widget - Full Height */}
-      <div className="container mx-auto px-4 py-4">
-        <div className="bg-primary/50 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden">
-          <div
-            ref={containerRef}
-            className="tradingview-widget-container"
-            style={{ height: 'calc(100vh - 16rem)' }}
-          >
-            <div className="tradingview-widget-container__widget"></div>
-          </div>
-        </div>
+      <div
+        ref={containerRef}
+        className="tradingview-widget-container"
+        style={{ height: 'calc(100% - 6rem)' }}
+      >
+        <div className="tradingview-widget-container__widget" style={{ height: '100%', width: '100%' }}></div>
       </div>
     </div>
   )
