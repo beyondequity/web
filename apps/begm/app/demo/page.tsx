@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-export default function TradePage() {
+export default function DemoPage() {
   useEffect(() => {
     const script = document.createElement('script')
     script.src = 'https://s3.tradingview.com/tv.js'
@@ -59,15 +59,15 @@ export default function TradePage() {
       {/* Top Bar */}
       <div className="h-14 bg-primary/95 backdrop-blur-sm border-b border-white/10 flex items-center justify-between px-4 z-10">
         <div className="flex items-center gap-3">
-          <h1 className="text-lg font-bold text-white">Live Trading Platform</h1>
-          <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded-full border border-green-500/30">
-            Live Markets
+          <h1 className="text-lg font-bold text-white">Demo Trading Platform</h1>
+          <span className="text-xs px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full border border-blue-500/30">
+            Practice Mode
           </span>
         </div>
         <Link
           href="/"
           className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-          title="Exit Trading"
+          title="Exit Demo"
         >
           <X size={20} className="text-white/70 hover:text-white" />
         </Link>
@@ -78,23 +78,15 @@ export default function TradePage() {
         <div id="tradingview_chart" className="absolute inset-0" />
       </div>
 
-      {/* Bottom CTA Bar */}
-      <div className="h-12 bg-primary/95 backdrop-blur-sm border-t border-white/10 flex items-center justify-center px-4 gap-4 z-10">
-        <p className="text-sm text-white/80">
-          Ready to trade with real money?
+      {/* Bottom Info Bar */}
+      <div className="h-10 bg-primary/95 backdrop-blur-sm border-t border-white/10 flex items-center justify-center px-4 z-10">
+        <p className="text-xs text-white/60">
+          Demo account with virtual funds •{' '}
+          <Link href="/signup" className="text-accent hover:text-accent/80 underline">
+            Create a real account
+          </Link>
+          {' '}to start trading
         </p>
-        <Link
-          href="/signup"
-          className="px-4 py-2 bg-accent hover:bg-accent/90 text-white text-sm font-semibold rounded-lg transition-colors"
-        >
-          Sign Up Now
-        </Link>
-        <Link
-          href="/demo"
-          className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors"
-        >
-          Try Demo First
-        </Link>
       </div>
     </div>
   )

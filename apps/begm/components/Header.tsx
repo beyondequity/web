@@ -30,26 +30,72 @@ export function Header() {
               </button>
               <div className="absolute left-0 top-full pt-2 z-50">
                 <div className="w-64 bg-primary/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <Link 
-                    href="/products/pro-trader" 
+                  <Link
+                    href="/products/pro-trader"
                     className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5"
                   >
                     <div className="font-semibold">BEGM Pro Trader™</div>
                     <div className="text-xs text-white/60 mt-1">Institutional-grade trading platform</div>
                   </Link>
-                  <Link 
-                    href="/products/elite-pro-trader" 
+                  <Link
+                    href="/products/elite-pro-trader"
                     className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5"
                   >
                     <div className="font-semibold">BEGM Elite Pro Trader™</div>
                     <div className="text-xs text-white/60 mt-1">Premium suite for high-frequency trading</div>
                   </Link>
-                  <Link 
-                    href="/products/global-marketplace" 
+                  <Link
+                    href="/products/global-marketplace"
                     className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors"
                   >
                     <div className="font-semibold">BEGM Global Marketplace™</div>
                     <div className="text-xs text-white/60 mt-1">Bloomberg Terminal for Private Markets</div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Link href="/trade" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
+              TRADE
+            </Link>
+            {/* Markets Dropdown */}
+            <div
+              className="relative group"
+            >
+              <button className="text-sm font-medium text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                MARKETS
+                <ChevronDown size={16} className={`transition-transform group-hover:rotate-180`} />
+              </button>
+              <div className="absolute left-0 top-full pt-2 z-50">
+                <div className="w-48 bg-primary/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <Link
+                    href="/markets/stocks"
+                    className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5"
+                  >
+                    📈 Stocks
+                  </Link>
+                  <Link
+                    href="/markets/crypto"
+                    className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5"
+                  >
+                    ₿ Crypto
+                  </Link>
+                  <Link
+                    href="/markets/forex"
+                    className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5"
+                  >
+                    💱 Forex
+                  </Link>
+                  <Link
+                    href="/markets/futures"
+                    className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors border-b border-white/5"
+                  >
+                    📊 Futures
+                  </Link>
+                  <Link
+                    href="/markets/indices"
+                    className="block px-4 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+                  >
+                    📉 Indices
                   </Link>
                 </div>
               </div>
@@ -128,7 +174,49 @@ export function Header() {
                 BEGM Global Marketplace™
               </Link>
             </div>
-            
+
+            <Link
+              href="/trade"
+              className="block rounded-lg px-3 py-2 text-base font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+            >
+              TRADE
+            </Link>
+
+            {/* Markets Section */}
+            <div className="mb-2">
+              <div className="px-3 py-2 text-xs font-semibold text-white/60 uppercase">Markets</div>
+              <Link
+                href="/markets/stocks"
+                className="block rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+              >
+                📈 Stocks
+              </Link>
+              <Link
+                href="/markets/crypto"
+                className="block rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+              >
+                ₿ Crypto
+              </Link>
+              <Link
+                href="/markets/forex"
+                className="block rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+              >
+                💱 Forex
+              </Link>
+              <Link
+                href="/markets/futures"
+                className="block rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+              >
+                📊 Futures
+              </Link>
+              <Link
+                href="/markets/indices"
+                className="block rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
+              >
+                📉 Indices
+              </Link>
+            </div>
+
             <Link
               href="/invest"
               className="block rounded-lg px-3 py-2 text-base font-medium text-white/90 hover:bg-white/5 hover:text-white transition-colors"
