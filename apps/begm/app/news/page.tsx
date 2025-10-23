@@ -32,30 +32,27 @@ export default function NewsPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-primary">
-      <div className="container mx-auto px-4 py-8">
-        {/* Page Header */}
-        <div className="mb-6">
+    <div className="bg-primary">
+      {/* Page Header */}
+      <div className="border-b border-white/10 px-4 py-6">
+        <div className="container mx-auto">
           <h1 className="text-3xl font-bold text-white mb-2">Market News</h1>
           <p className="text-white/70">
             Stay updated with the latest market news, analysis, and insights from top financial sources
           </p>
         </div>
+      </div>
 
-        {/* TradingView Timeline Widget */}
+      {/* TradingView Timeline Widget - Full Height */}
+      <div className="container mx-auto px-4 py-4">
         <div className="bg-primary/50 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden">
           <div
             ref={containerRef}
             className="tradingview-widget-container"
-            style={{ minHeight: '800px' }}
+            style={{ height: 'calc(100vh - 16rem)' }}
           >
             <div className="tradingview-widget-container__widget"></div>
           </div>
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-6 text-center text-white/50 text-sm">
-          <p>News powered by TradingView • Updated in real-time</p>
         </div>
       </div>
     </div>
