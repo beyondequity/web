@@ -207,6 +207,87 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Advanced Trading Platform Features */}
+      <section className="py-20 bg-gradient-to-br from-primary via-secondary to-primary">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 border border-success/20 mb-6">
+                <BarChart3 className="text-success" size={16} />
+                <span className="text-sm font-semibold text-success">Professional Trading Platform</span>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+                Institutional-Grade Trading Tools
+              </h2>
+              <p className="text-xl text-muted-1 max-w-3xl mx-auto">
+                Access the same powerful analytics and charting tools used by professional traders and institutions
+              </p>
+            </div>
+
+            {/* Advanced Studies */}
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold mb-6 text-center">Advanced Technical Studies Pre-Loaded</h3>
+              <div className="grid md:grid-cols-4 gap-6">
+                {[
+                  { name: 'Volume Bars', icon: '📊', desc: 'Real-time volume analysis' },
+                  { name: 'Moving Averages', icon: '📈', desc: 'Multiple MA indicators' },
+                  { name: 'RSI', icon: '⚡', desc: 'Relative Strength Index' },
+                  { name: 'MACD', icon: '🎯', desc: 'Momentum indicators' },
+                ].map((study, i) => (
+                  <div key={i} className="glass-effect rounded-xl p-6 text-center hover:border-success/50 transition-all">
+                    <div className="text-4xl mb-3">{study.icon}</div>
+                    <h4 className="text-lg font-bold mb-2">{study.name}</h4>
+                    <p className="text-sm text-muted-1">{study.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Professional Features Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { icon: '📊', title: 'Details Panel', desc: 'Comprehensive market data at your fingertips' },
+                { icon: '🔥', title: 'Hotlist', desc: 'Track trending symbols in real-time' },
+                { icon: '📅', title: 'Economic Calendar', desc: 'Stay ahead of market-moving events' },
+                { icon: '🔍', title: 'Symbol Search', desc: 'Quick access to any instrument' },
+                { icon: '📈', title: 'Chart Comparison', desc: 'Compare multiple symbols side-by-side' },
+                { icon: '↩️', title: 'Undo/Redo', desc: 'Never lose your chart configurations' },
+                { icon: '📸', title: 'Screenshot', desc: 'Capture and share your analysis' },
+                { icon: '⛶', title: 'Fullscreen Mode', desc: 'Immersive trading experience' },
+                { icon: '🎨', title: 'Drawing Tools', desc: 'Full suite of technical drawing tools' },
+                { icon: '⚙️', title: 'Indicator Control', desc: 'Customize every aspect of indicators' },
+                { icon: '⏱️', title: 'Timeframes', desc: 'From 1-minute to monthly charts' },
+                { icon: '🟢', title: 'Market Status', desc: 'Live market hours and status' },
+                { icon: '💾', title: 'Auto-Save', desc: 'Your settings saved automatically' },
+                { icon: '🎯', title: 'Watchlists', desc: 'Create unlimited custom watchlists' },
+                { icon: '📱', title: 'Multi-Device', desc: 'Sync across all your devices' },
+              ].map((feature, i) => (
+                <div key={i} className="glass-effect rounded-xl p-6 hover:border-success/50 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="text-3xl flex-shrink-0">{feature.icon}</div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">{feature.title}</h4>
+                      <p className="text-sm text-muted-1">{feature.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="mt-12 text-center">
+              <Link
+                href="/trade"
+                className="inline-flex items-center gap-2 px-10 py-4 bg-success text-white rounded-xl font-bold text-lg hover:bg-success/90 transition-all shadow-lg shadow-success/20"
+              >
+                Experience the Platform
+                <ArrowRight size={20} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
