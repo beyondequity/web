@@ -21,6 +21,9 @@
   "scripts": {
     "build": "tsup src/index.ts src/data.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts src/data.ts --format cjs,esm --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "lint": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
@@ -28,7 +31,9 @@
     "@beyondequity/types": "workspace:*"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.8",
     "tsup": "^8.3.5",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.8"
   }
 }

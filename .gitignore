@@ -12,3 +12,9 @@ crawled-content
 # Lock files - using pnpm
 package-lock.json
 .turbo
+
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+GROK.md
+QWEN.md
